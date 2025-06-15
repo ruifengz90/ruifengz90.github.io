@@ -86,9 +86,9 @@ set mailserver smtp.qq.com port 25
 set mail-format { from: your-sender@qq.com }
 
 check system $HOST
-    if loadavg (15min) > 3.2 then alert
+    if loadavg (15min) > 3 then alert #推荐为 loadavg < 核心数
     if cpu usage > 90% for 10 cycles then alert
-    if memory usage > 75% then alert
+    if memory usage > 85% then alert
     if swap usage > 75% then alert
 
 set httpd port 2812 and
