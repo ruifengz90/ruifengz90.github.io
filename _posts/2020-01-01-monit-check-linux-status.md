@@ -128,6 +128,6 @@ include /etc/monit.d/*
 > 
 > https://www.dazhuanlan.com/2019/12/05/5de81efeafdc0/
 
-> 图拉鼎的monit blog
+> 为 Ubuntu Server 配置自动发邮件警报的 Monit
 >
 > https://imtx.me/blog/use-monit-to-send-alert-email-on-ubuntu-server/
