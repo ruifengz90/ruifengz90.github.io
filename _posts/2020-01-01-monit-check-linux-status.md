@@ -8,13 +8,13 @@ comments: true
 
 Monit version 5.33.0
 
-# 安装 Monit
+# 1. 安装 Monit
 
 ```shell
 sudo apt install monit
 ```
 
-# 编辑配置文件
+# 2. 编辑配置文件
 
 ```shell
 sudo vim /etc/monit/monitrc
@@ -32,7 +32,7 @@ sudo systemctl start monit
 sudo systemctl status monit
 ```
 
-# alert邮件发送接收的关键配置：
+# 3. alert邮件发送接收的关键配置：
 
 ```shell
 set mailserver smtp.qq.com port 465
@@ -63,7 +63,7 @@ username 12345678@qq.com和set mail-format from: 12345678@qq.com的发送邮箱�
 
 接受邮箱配置：set alert yourreceiver@example.com，这里这个邮箱是接收alert的邮箱。
 
-# Monit Web UI：
+# 4. Monit Web UI：
 
 如果你从外部机器浏览器访问 Monit Web UI（例如从你本地电脑访问远程服务器的 Monit 状态），那么你需要在安全组中打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
 
@@ -79,7 +79,7 @@ set httpd port 2812 and
 
 配置代码来自 ChatGPT。
 
-# 服务器指标检测alert设置（也是在配置文件中配置）：
+# 5. 服务器指标检测alert设置（也是在配置文件中配置）：
 
 ```shell
   check system $HOST
