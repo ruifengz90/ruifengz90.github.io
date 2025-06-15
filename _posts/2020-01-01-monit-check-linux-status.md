@@ -124,10 +124,6 @@ include /etc/monit.d/*
 >
 > https://medium.com/@anuketjain007/how-to-install-and-configure-monit-on-centos-rhel-7-6-73f8a10168ae
 
-> qq邮件
-> 
-> https://www.dazhuanlan.com/2019/12/05/5de81efeafdc0/
-
 > 为 Ubuntu Server 配置自动发邮件警报的 Monit
 >
 > https://imtx.me/blog/use-monit-to-send-alert-email-on-ubuntu-server/
