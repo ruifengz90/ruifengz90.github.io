@@ -10,7 +10,7 @@ Monit version 5.26.0
 
 ```shell
 set mailserver smtp.qq.com port 25
-    username "your-sender" password "qqshouquanma" # your-sender is the same with send-mail-to@qq.com in mail-format. password为qq邮箱授权码
+    username "your-sender" password "qqshouquanma" # your-sender is the same with your-sender@qq.com in mail-format. password为qq邮箱授权码
     using tlsv1
     with timeout 30 seconds
     set alert send-mail-to1@qq.com not on { instance, action } 
