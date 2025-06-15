@@ -29,13 +29,13 @@ set httpdport 2812 and
 
 username和set mail-format from设置应该一致。
 
-接受邮箱配置：set alert send-mail-to1@qq.com，这里这个邮箱是接收警告的邮箱。
+接受邮箱配置：set alert send-mail-to1@qq.com，这里这个邮箱是接收alert的邮箱。
 
 ## 2，服务器关键配置：
 
 安全组打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
 
-## 3，服务检测警告设置（也是在配置文件中配）：
+## 3，服务检测alert设置（也是在配置文件中配）：
 
 主要条件是：15分钟的负载超过3.2，或者 10 次检查的 CPU 使用率超过 95%（也就是 10 分钟），或者内存占用超过 75%，或者 SWAP 使用超过 75%。
 
@@ -47,7 +47,7 @@ check system $HOST
     if swap usage > 75% then alert
 ```
 
-## 4, 检测process，如果不存在，则警告：
+## 4, 检测process，如果不存在，则邮件报告：
 
 ```shell
 check process link
