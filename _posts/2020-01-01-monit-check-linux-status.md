@@ -38,7 +38,7 @@ username和set mail-format from设置应该一致。
 并且这样配置 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
 
 ```shell
-set httpdport 2812 and
+set httpd port 2812 and
     use address 0.0.0.0  # 表示监听的 IP 地址
     allow 0.0.0.0/0.0.0.0        # allow all ip to connect to the server and
     allow admin:strongpassword      # require user 'admin' with password 'monit'
@@ -100,7 +100,7 @@ check system $HOST
     if memory usage > 85% then alert
     if swap usage > 75% then alert
 
-set httpdport 2812 and
+set httpd port 2812 and
     use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
     allow localhost        # allow localhost to connect to the server and
     allow admin:strongpassword      # require user 'admin' with your custome password
