@@ -138,35 +138,30 @@ img {
 }
 
 .content {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    grid-template-areas: "header main";
+    gap: 1rem;
     margin: 1.4em auto;
     z-index: 0;
     background: var(--content_bg);
-    position: relative;
     min-height: 85%;
     border-radius: 15px;
     box-shadow: 0 0 2px 2px var(--shadow_color);
     padding-bottom: 2rem;
-
-    @include breakpoint(medium) {
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1440px;
-        padding-top: 2.5rem;
-    }
+    max-width: 1440px;
 
     @include mobile-only {
-        padding-top: 16rem;
+        grid-template-columns: 1fr;
+        grid-template-areas: "header" "main";
         min-height: 75%;
         max-width: 92%;
     }
 }
 
 .main {
+    grid-area: main;
     padding: 0.5rem;
-
-    @include breakpoint(medium) {
-        margin-left: 22rem;
-    }
 }
 
 .aboutme {
@@ -284,28 +279,21 @@ img {
    ========================================================================== */
 
 .header {
+    grid-area: header;
     background-color: var(--header_bg);
     z-index: 1;
-    position: absolute;
     top: 0;
     border-radius: var(--border_radius);
     box-shadow: 0 0 2px 2px var(--shadow_color);
+    // height: 100%;
 
     @include mobile-only {
         width: 100%;
-        height: 9rem;
     }
-
-    @include breakpoint(medium) {
-        width: 18rem;
-        height: 100%;
-        min-height: 100%;
-    }
-
 }
 
 .header_content {
-    position: absolute;
+    // position: absolute;
     text-align: center;
 
     @include breakpoint(medium) {
@@ -379,7 +367,7 @@ img {
                 content: '';
                 width: inherit;
                 height: inherit;
-                position: absolute;
+                // position: absolute;
                 left: 0;
                 top: 0;
                 transition: background .5s ease;
@@ -392,7 +380,7 @@ img {
                 content: '';
                 width: 30px;
                 height: 30px;
-                position: absolute;
+                // position: absolute;
                 transform: scale(0);
                 transition: all .5s ease;
             }
@@ -470,13 +458,7 @@ img {
 
     @include mobile-only {
         display: block;
-        margin: -.5rem;
-    }
-
-    @include breakpoint(medium) {
-        position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
+        margin: 0.5rem;
     }
 }
 
