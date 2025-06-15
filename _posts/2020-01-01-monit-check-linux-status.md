@@ -120,7 +120,7 @@ include /etc/monit.d/*
 
 
 ## 5，参考链接：
-> How to Install andConfigure Monit on CentOS/RHEL 7/6
+> How to Install and Configure Monit on CentOS/RHEL 7/6
 >
 > https://medium.com/@anuketjain007/how-to-install-and-configure-monit-on-centos-rhel-7-6-73f8a10168ae
 
