@@ -20,9 +20,9 @@ set mailserver smtp.qq.com port 25
 set mail-format { from: your-sender@qq.com }
  
 set httpdport 2812 and
-    use address 0.0.0.0  # only accept connection from localhost (drop if you use M/Monit)
-    allow 0.0.0.0/0.0.0.0        # allow localhost to connect to the server and
-    allow admin:monit      # require user 'admin' with password 'monit'
+    use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
+    allow localhost        # allow localhost to connect to the server and
+    allow admin:strongpassword      # require user 'admin' with your custome password
 ```
 
 发送邮件配置：用的是qq邮箱的smtp端口，username是qq邮箱username@qq.com的username部分，password是qq邮箱的授权码。
@@ -33,7 +33,15 @@ username和set mail-format from设置应该一致。
 
 ## 2，服务器关键配置：
 
-安全组打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
+如果你从外部机器浏览器访问 Monit Web UI（例如从你本地电脑访问远程服务器的 Monit 状态），那么你需要在安全组中打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
+
+配置通常在 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
+
+```shell
+set httpd port 2812
+    use address 0.0.0.0     # 或 127.0.0.1，表示监听的 IP 地址
+    allow admin:strongpassword       # 登录用户名和密码
+```
 
 ## 3，服务器指标检测alert设置（也是在配置文件中配置）：
 
@@ -91,10 +99,10 @@ check system $HOST
     if memory usage > 85% then alert
     if swap usage > 75% then alert
 
-set httpd port 2812 and
-    use address 0.0.0.0  # only accept connection from localhost (drop if you use M/Monit)
-    allow 0.0.0.0/0.0.0.0        # allow localhost to connect to the server and
-    allow admin:monit      # require user 'admin' with password 'monit'
+set httpdport 2812 and
+    use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
+    allow localhost        # allow localhost to connect to the server and
+    allow admin:strongpassword      # require user 'admin' with your custome password
 
 ###############################################################################
 
