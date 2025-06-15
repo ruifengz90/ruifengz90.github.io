@@ -6,7 +6,7 @@ comments: true
 
 Monit version 5.26.0
 
-## 1，monit配置文件关键配置：
+## 1，alert邮件发送接收的关键配置：
 
 ```shell
 set mailserver smtp.qq.com port 25
