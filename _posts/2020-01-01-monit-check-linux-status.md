@@ -37,13 +37,13 @@ username和set mail-format from设置应该一致。
 
 ## 3，服务检测alert设置（也是在配置文件中配）：
 
-主要条件是：15分钟的负载超过3.2，或者 10 次检查的 CPU 使用率超过 95%（也就是 10 分钟），或者内存占用超过 75%，或者 SWAP 使用超过 75%。
+主要条件是：15分钟的负载超过3，或者 10 次检查的 CPU 使用率超过 90%（也就是 10 分钟），或者内存占用超过 85%，或者 SWAP 使用超过 75%。
 
 ```shell
 check system $HOST
-    if loadavg (15min) > 3.2 then alert
+    if loadavg (15min) > 3 then alert #推荐为 loadavg < 核心数
     if cpu usage > 90% for 10 cyclesthen alert
-    if memory usage > 75% then alert
+    if memory usage > 85% then alert
     if swap usage > 75% then alert
 ```
 
