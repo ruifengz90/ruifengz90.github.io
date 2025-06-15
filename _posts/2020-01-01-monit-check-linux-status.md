@@ -38,9 +38,10 @@ username和set mail-format from设置应该一致。
 配置通常在 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
 
 ```shell
-set httpd port 2812
-    use address 0.0.0.0     # 或 127.0.0.1，表示监听的 IP 地址
-    allow admin:strongpassword       # 登录用户名和密码
+set httpdport 2812 and
+    use address 0.0.0.0  # 表示监听的 IP 地址
+    allow 0.0.0.0/0.0.0.0        # allow all ip to connect to the server and
+    allow admin:strongpassword      # require user 'admin' with password 'monit'
 ```
 
 ## 3，服务器指标检测alert设置（也是在配置文件中配置）：
