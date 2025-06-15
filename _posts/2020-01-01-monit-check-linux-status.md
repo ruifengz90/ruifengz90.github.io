@@ -4,7 +4,9 @@ categories: [coding]
 comments: true
 ---
 
-Monit version 5.26.0
+> <span style="color:yellow; background-color:gray">本篇 Blog 编写于 2020 年。状态为 Depreciated。</span>
+
+Monit version 5.26.0 发布于 2020 年 3 月。
 
 ## 1，alert邮件发送接收的关键配置：
 
@@ -24,6 +26,8 @@ set httpd port 2812 and
     allow localhost        # allow localhost to connect to the server and
     allow admin:strongpassword      # require user 'admin' with your custome password
 ```
+
+> <span style="color:red">2025-06-16 UPDATE: 出于安全和反垃圾邮件的原因，现在 QQ 邮箱的 SMTP 服务器（smtp.qq.com）默认已经不支持端口 25，推荐改用更安全的加密端口。</span>
 
 发送邮件配置：用的是qq邮箱的smtp端口，username是qq邮箱username@qq.com的username部分，password是qq邮箱的授权码。
 
