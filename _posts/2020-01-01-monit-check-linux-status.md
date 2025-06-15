@@ -55,7 +55,7 @@ set alert yourreceiver@example.com
 
 配置代码来自 ChatGPT。
 
-> <span style="color:red">2025-06-16 UPDATE: 出于安全和反垃圾邮件的原因，现在 QQ 邮箱的 SMTP 服务器（smtp.qq.com）默认已经不支持端口 25，推荐改用更安全的加密端口。</span>
+> <span style="color:red">出于安全和反垃圾邮件的原因，现在 QQ 邮箱的 SMTP 服务器（smtp.qq.com）默认已经不支持端口 25，推荐改用更安全的加密端口。</span>
 
 发送邮件配置：用的是 QQ 邮箱的 SMTP 服务器，端口是 465，username 是 "12345678@qq.com" QQ邮箱地址。password 是 QQ 邮箱的授权码。
 
