@@ -72,7 +72,7 @@ username 12345678@qq.com和set mail-format from: 12345678@qq.com的发送邮箱�
 ```shell
 set httpd port 2812 and
     use address 0.0.0.0    # ⚠️ 表示监听所有 IP（远程可访问）
-    allow admin:monit      # 用户名:密码，生产环境建议更复杂
+    allow admin:yourStrongPassword      # 用户名:密码，生产环境建议更复杂
     allow localhost        # 允许本机访问 或者 填写开发机器具体 IP 地址 或者 填写0.0.0.0/0.0.0.0 允许所有 IP 地址访问(不安全)
     # allow 192.168.1.0/24 # 可选，允许局域网段访问
 ```
