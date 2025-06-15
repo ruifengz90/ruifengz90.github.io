@@ -21,7 +21,7 @@ user:
   name: ruifeng
   pic: /assets/img/cat.png
   picAlt: "cat"
-  job: 一个小菜程序员
+  job: 程序员
   aboutme: true # comment this out if you don't need the 'about' page.
 
 exclude:
