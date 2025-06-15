@@ -19,7 +19,7 @@ set mailserver smtp.qq.com port 25
 
 set mail-format { from: your-sender@qq.com }
  
-set httpdport 2812 and
+set httpd port 2812 and
     use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
     allow localhost        # allow localhost to connect to the server and
     allow admin:strongpassword      # require user 'admin' with your custome password
