@@ -43,7 +43,7 @@ username和set mail-format from设置应该一致。
 check system $HOST
     if loadavg (15min) > 3.2 then alert
     if cpu usage > 90% for 10 cyclesthen alert
-    if memory usage > 75% thenalert
+    if memory usage > 75% then alert
     if swap usage > 75% then alert
 ```
 
