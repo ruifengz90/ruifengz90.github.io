@@ -80,7 +80,7 @@ set mailserver smtp.qq.com port 25
     using tlsv1
     with timeout 30 seconds
     set alert send-mail-to1@qq.com not on { instance, action } 
-    set alert send-mail-to2@hotmail.com not on { instance, action } 
+    set alert send-mail-to2@qq.com not on { instance, action } 
     set alert send-mail-to3@qq.com not on { instance, action }
 
 set mail-format { from: your-sender@qq.com }
