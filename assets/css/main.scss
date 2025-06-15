@@ -152,16 +152,24 @@ img {
     max-width: 1440px;
 
     @include mobile-only {
-        grid-template-columns: 1fr;
-        grid-template-areas: "header" "main";
+        display: flex;
+        flex-direction: column;
         min-height: 75%;
         max-width: 92%;
+        gap: 1rem;
     }
 }
 
 .main {
     grid-area: main;
     padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include mobile-only {
+        padding: 0 1rem;
+        order: 3;
+    }
 }
 
 .aboutme {
@@ -285,10 +293,12 @@ img {
     top: 0;
     border-radius: var(--border_radius);
     box-shadow: 0 0 2px 2px var(--shadow_color);
-    // height: 100%;
+    width: 18rem;
 
     @include mobile-only {
         width: 100%;
+        margin-bottom: 0;
+        order: 1;
     }
 }
 
@@ -458,7 +468,10 @@ img {
 
     @include mobile-only {
         display: block;
-        margin: 0.5rem;
+        width: 100%;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        order: 2;
     }
 }
 
