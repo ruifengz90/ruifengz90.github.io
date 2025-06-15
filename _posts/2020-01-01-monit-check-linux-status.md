@@ -35,7 +35,7 @@ username和set mail-format from设置应该一致。
 
 如果你从外部机器浏览器访问 Monit Web UI（例如从你本地电脑访问远程服务器的 Monit 状态），那么你需要在安全组中打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
 
-配置通常在 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
+并且这样配置 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
 
 ```shell
 set httpdport 2812 and
