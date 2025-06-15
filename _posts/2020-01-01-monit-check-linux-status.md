@@ -4,135 +4,98 @@ categories: [coding]
 comments: true
 ---
 
-> <span style="color:yellow; background-color:gray">本篇 Blog 编写于 2020 年。状态为 Depreciated。</span>
+> <span style="color:yellow; background-color:gray">本篇blog edit于2025年6月。</span>
 
-Monit version 5.26.0 发布于 2020 年 3 月。
+Monit version 5.33.0
 
-## 1，alert邮件发送接收的关键配置：
+# 安装 Monit
 
 ```shell
-set mailserver smtp.qq.com port 25
-    username "your-sender" password "shouquanma" # your-sender is the same with your-sender@qq.com in mail-format. password为qq邮箱授权码
-    using tlsv1
-    with timeout 30 seconds
-    set alert send-mail-to1@qq.com not on { instance, action } 
-    set alert send-mail-to2@qq.com not on { instance, action } 
-    set alert send-mail-to3@qq.com not on { instance, action }
-
-set mail-format { from: your-sender@qq.com }
- 
-set httpd port 2812 and
-    use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
-    allow localhost        # allow localhost to connect to the server and
-    allow admin:strongpassword      # require user 'admin' with your custome password
+sudo apt install monit
 ```
+
+# 编辑配置文件
+
+```shell
+sudo vim /etc/monit/monitrc
+```
+
+启动 Monit
+
+```shell
+sudo systemctl start monit
+```
+
+检查 Monit 状态
+
+```shell
+sudo systemctl status monit
+```
+
+# alert邮件发送接收的关键配置：
+
+```shell
+set mailserver smtp.qq.com port 465
+    username "12345678@qq.com"
+    password "your_auth_code"  # QQ邮箱授权码
+    using ssl
+
+set mail-format {
+    from: 12345678@qq.com
+    subject: Monit alert -- $EVENT $SERVICE
+    message: $EVENT Service $SERVICE
+        Date: $DATE
+        Description: $DESCRIPTION
+        Action: $ACTION
+        Host: $HOST
+}
+
+set alert yourreceiver@example.com
+```
+
+配置代码来自 ChatGPT。
 
 > <span style="color:red">2025-06-16 UPDATE: 出于安全和反垃圾邮件的原因，现在 QQ 邮箱的 SMTP 服务器（smtp.qq.com）默认已经不支持端口 25，推荐改用更安全的加密端口。</span>
 
-发送邮件配置：用的是qq邮箱的smtp端口，username是qq邮箱username@qq.com的username部分，password是qq邮箱的授权码。
+发送邮件配置：用的是 QQ 邮箱的 SMTP 服务器，端口是 465，username 是 "12345678@qq.com" QQ邮箱地址。password 是 QQ 邮箱的授权码。
 
-username和set mail-format from设置应该一致。
+username 12345678@qq.com和set mail-format from: 12345678@qq.com的发送邮箱地址设置应该一致。
 
-接受邮箱配置：set alert send-mail-to1@qq.com，这里这个邮箱是接收alert的邮箱。
+接受邮箱配置：set alert yourreceiver@example.com，这里这个邮箱是接收alert的邮箱。
 
-## 2，服务器关键配置：
+# Monit Web UI：
 
 如果你从外部机器浏览器访问 Monit Web UI（例如从你本地电脑访问远程服务器的 Monit 状态），那么你需要在安全组中打开2812端口（即配置文件中的“set httpdport 2812 and”的2812）。
 
-并且这样配置 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
+并且配置 /etc/monitrc 或 /etc/monit/monitrc 中，类似如下：
 
 ```shell
 set httpd port 2812 and
-    use address 0.0.0.0  # 表示监听的 IP 地址
-    allow 0.0.0.0/0.0.0.0        # allow all ip to connect to the server and
-    allow admin:strongpassword      # require user 'admin' with password 'monit'
+    use address 0.0.0.0    # ⚠️ 表示监听所有 IP（远程可访问）
+    allow admin:monit      # 用户名:密码，生产环境建议更复杂
+    allow localhost        # 允许本机访问 或者 填写开发机器具体 IP 地址 或者 填写0.0.0.0/0.0.0.0 允许所有 IP 地址访问(不安全)
+    # allow 192.168.1.0/24 # 可选，允许局域网段访问
 ```
 
-## 3，服务器指标检测alert设置（也是在配置文件中配置）：
+配置代码来自 ChatGPT。
 
-主要条件是：15分钟的负载超过3，或者 10 次检查的 CPU 使用率超过 90%（也就是 10 分钟），或者内存占用超过 85%，或者 SWAP 使用超过 75%。
+# 服务器指标检测alert设置（也是在配置文件中配置）：
 
 ```shell
-check system $HOST
-    if loadavg (15min) > 3 then alert #推荐为 loadavg < 核心数
-    if cpu usage > 90% for 10 cyclesthen alert
-    if memory usage > 85% then alert
-    if swap usage > 75% then alert
+  check system $HOST
+    if cpu usage > 95% for 10 cycles then alert
+    if memory usage > 90% then alert
+    if swap usage > 85% then alert
 ```
 
-## 4, 检测process，如果不存在，则邮件报告：
+配置代码来自 `/etc/monit/monitrc` 示例配置uncommented。
 
-```shell
-check process link
-    matching "linkmanager" # regx matching
-    if does not exist then alert
-    #start program = "docker-compose -f /www/deviceaccesssystem/link-manager/docker-compose.yaml up -d"
-    #stop program = "docker-compose -f /www/deviceaccesssystem/link-manager/docker-compose.yaml down"
-```
+# 参考链接：
 
-## 4，完整配置文件
-```shell
-###############################################################################
-## Monit control file
-###############################################################################
-##
-## Comments begin with a '#' and extend through the end of the line. Keywords
-## are case insensitive. All path's MUST BE FULLY QUALIFIED, starting with '/'.
-##
-## Below you will find examples of some frequently used statements. For
-## information about the control file and a complete list of statements and
-## options, please have a look in the Monit manual.
-##
-##
-###############################################################################
-## Global section
-###############################################################################
+> Monit website
+>
+> https://mmonit.com/monit/
 
-set mailserver smtp.qq.com port 25
-    username "your-sender" password "shouquanma" # your-sender is the same with your-sender.qq.com in mail-format. password为qq邮箱授权码
-    using tlsv1
-    with timeout 30 seconds
-    set alert send-mail-to1@qq.com not on { instance, action } 
-    set alert send-mail-to2@qq.com not on { instance, action } 
-    set alert send-mail-to3@qq.com not on { instance, action }
-
-set mail-format { from: your-sender@qq.com }
-
-check system $HOST
-    if loadavg (15min) > 3 then alert #推荐为 loadavg < 核心数
-    if cpu usage > 90% for 10 cycles then alert
-    if memory usage > 85% then alert
-    if swap usage > 75% then alert
-
-set httpd port 2812 and
-    use address 127.0.0.1  # only accept connection from localhost (drop if you use M/Monit)
-    allow localhost        # allow localhost to connect to the server and
-    allow admin:strongpassword      # require user 'admin' with your custome password
-
-###############################################################################
-
-
-
-##
-## Start Monit in the background (run as a daemon):
-#
-set daemon  30              # check services at 30 seconds intervals
-#   with start delay 240    # optional: delay the first check by 4-minutes (by
-#                           # default Monit check immediately after Monit start)
-#
-#
-## Set syslog logging. If you want to log to a standalone log file instead,
-## specify the full path to the log file
-#
-set log syslog
-
-include /etc/monit.d/*
-#
-
-```
-
-
-## 5，参考链接：
 > How to Install and Configure Monit on CentOS/RHEL 7/6
 >
 > https://medium.com/@anuketjain007/how-to-install-and-configure-monit-on-centos-rhel-7-6-73f8a10168ae
