@@ -10,7 +10,7 @@ Monit version 5.26.0
 
 ```shell
 set mailserver smtp.qq.com port 25
-    username "your-sender" password "qqshouquanma" # your-sender is the same with your-sender.qq.com in mail-format. password为qq邮箱授权码
+    username "your-sender" password "qqshouquanma" # your-sender is the same with send-mail-to@qq.com in mail-format. password为qq邮箱授权码
     using tlsv1
     with timeout 30 seconds
     set alert send-mail-to1@qq.com not on { instance, action } 
@@ -50,11 +50,11 @@ check system $HOST
 ## 4, 检测process，如果不存在，则警告：
 
 ```shell
-check process nblink
-    matching "nblinkmanager" # regx matching
+check process link
+    matching "linkmanager" # regx matching
     if does not exist then alert
-    #start program = "docker-compose -f /www/deviceaccesssystem/nb-link-manager/docker-compose.yaml up -d"
-    #stop program = "docker-compose -f /www/deviceaccesssystem/nb-link-manager/docker-compose.yaml down"
+    #start program = "docker-compose -f /www/deviceaccesssystem/link-manager/docker-compose.yaml up -d"
+    #stop program = "docker-compose -f /www/deviceaccesssystem/link-manager/docker-compose.yaml down"
 ```
 
 ## 4，完整配置文件
