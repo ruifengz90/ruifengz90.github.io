@@ -1,0 +1,8 @@
+[build]
+  command = """
+    gem update --system 3.4.22 && \
+    bundle config set path 'vendor/bundle' && \
+    bundle install && \
+    bundle exec jekyll build
+  """
+  publish = "_site"
