@@ -6,7 +6,7 @@ comments: true
 
 ## 初试
 
-首先询问 Claude：如何实现像apple.com.cn似的nav导航栏的item被hover后将详细menu div缓缓落下显示的css动画。
+首先询问 Claude：如何实现nav导航栏的item被hover后将详细menu div缓缓落下显示的css动画。
 
 它给出详细代码。
 
