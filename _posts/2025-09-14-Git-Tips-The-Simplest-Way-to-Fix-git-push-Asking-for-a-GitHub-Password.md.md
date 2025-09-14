@@ -15,9 +15,8 @@ comments: true
 
 * 打开 https://github.com/settings/
 * 导航 Developer Settings -> Personal Access Tokens -> Generate new Tokens
-
-Repository access 设置要设置成包含需要 push 的repo
-Permissions 至少要包括 Contents 的 Read and write
+* Repository access 设置要设置成包含需要 push 的repo；Permissions 至少要包括 Contents 的 Read and write
+* 点击 Generate token 生成 token
 
 ![https://images.ruifeng.me/2025-09-14-Git-Tips5.png](https://images.ruifeng.me/2025-09-14-Git-Tips5.png)
 
