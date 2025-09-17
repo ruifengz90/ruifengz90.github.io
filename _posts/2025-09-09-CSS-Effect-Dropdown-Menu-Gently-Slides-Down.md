@@ -1,5 +1,5 @@
 ---
-title: 导航栏详细菜单缓缓落下的css特效
+title: 导航栏详细菜单缓缓落下的css效果
 categories: [dev]
 comments: true
 ---
