@@ -24,6 +24,6 @@ comments: true
 
 ![https://images.ruifeng.me/2025-09-14-Git-Tips2.png](https://images.ruifeng.me/2025-09-14-Git-Tips2.png)
 
-![https://images.ruifeng.me/2025-09-14-Git-Tips3.png](https://images.ruifeng.me/2025-09-14-Git-Tips3.png)
+![https://images.ruifeng.me/2025-09-14-Git-Tips3.png](https://images.ruifeng.me/2025-09-14-Git-Tips6.png)
 
 显示 Everything up-to-date 代表与 github 同步完成。
