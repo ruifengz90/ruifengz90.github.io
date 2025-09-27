@@ -5,7 +5,7 @@
     const themePreference = () => {
         const hasLocalStorage = localStorage.getItem('theme');
         let supports = false;
-        let theme = undefined;
+        let theme = 'dark';
 
         if (hasLocalStorage === 'light') {
             theme = 'light';
