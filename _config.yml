@@ -22,7 +22,7 @@ user:
   pic: /assets/img/cat.png
   picAlt: "cat"
   job: 程序员
-  aboutme: false # comment this out if you don't need the 'about' page.
+  aboutme: true # comment this out if you don't need the 'about' page.
 
 exclude:
   - README.md
