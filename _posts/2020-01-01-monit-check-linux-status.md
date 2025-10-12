@@ -89,3 +89,17 @@ set httpd port 2812 and
 ```
 
 配置代码来自 `/etc/monit/monitrc` 示例配置uncommented。
+
+# 参考链接：
+
+> Monit offical website
+>
+> https://mmonit.com/monit/
+
+> How to Install and Configure Monit on CentOS/RHEL 7/6
+>
+> https://medium.com/@anuketjain007/how-to-install-and-configure-monit-on-centos-rhel-7-6-73f8a10168ae
+
+> 为 Ubuntu Server 配置自动发邮件警报的 Monit
+>
+> https://imtx.me/blog/use-monit-to-send-alert-email-on-ubuntu-server/
